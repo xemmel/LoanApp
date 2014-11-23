@@ -7,7 +7,7 @@ namespace wit.LoanApp.Tests
   [TestClass]
   public class LoanControllerTest
   {
-    //Change
+    //Change2
     [TestMethod]
     public void getAnnoLoan_Simple()
     {
