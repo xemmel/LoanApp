@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+  <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+  <nav>
+    <ul class="nav nav-pills">
+      <li>@Html.ActionLink("Home","Index","Home")</li>
+      <li>@Html.ActionLink("Simple Loan","SimpleLoan","Loan")</li>
+
+    </ul>
+  </nav>
+  <div class="well" data-ng-app="">
+        @RenderBody()
+   </div>
+
+    @Scripts.Render("~/bundles/jquery")
+  <script src="~/Scripts/angular.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

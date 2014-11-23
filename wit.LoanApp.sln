@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wit.LoanApp", "wit.LoanApp\wit.LoanApp.csproj", "{F7BE6909-188B-43BC-9771-EABDF045716E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wit.LoanApp.Tests", "wit.LoanApp.Tests\wit.LoanApp.Tests.csproj", "{8F5FCFBA-9DD0-489E-8A9B-FB6ACFF98E70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7BE6909-188B-43BC-9771-EABDF045716E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7BE6909-188B-43BC-9771-EABDF045716E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7BE6909-188B-43BC-9771-EABDF045716E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7BE6909-188B-43BC-9771-EABDF045716E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F5FCFBA-9DD0-489E-8A9B-FB6ACFF98E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F5FCFBA-9DD0-489E-8A9B-FB6ACFF98E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F5FCFBA-9DD0-489E-8A9B-FB6ACFF98E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F5FCFBA-9DD0-489E-8A9B-FB6ACFF98E70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,111 @@
+﻿@{
+  ViewBag.Title = "Index";
+}
+
+<h2>Låne omlægger</h2>
+
+<div class="input-form" data-ng-controller="loanCtrl">
+  <div class="row">
+    <div class="col-md-2">
+      Eksisterende Lån:
+      <input type="text" placeholder="Eksisterende lån..." class="form-control" data-ng-model="oldLoan" />
+    </div>
+    <div class="col-md-1">
+      Antal år:
+      <input type="text" placeholder="Antal år..." class="form-control" data-ng-model="oldYears" />
+    </div>
+    <div class="col-md-1">
+      Rente(%):<input type="text" placeholder="Rente(%)..." class="form-control" data-ng-model="oldInterest" />
+    </div>
+       <div class="col-md-1">
+      Bet/år:<input type="text" placeholder="betalinger pr. år.." class="form-control" data-ng-model="paymentPrYear" />
+    </div>
+ 
+    <div class="col-md-1">
+      Payment: {{oldPayment | number:2}}
+    </div>
+    <div class="col-md-1">
+      Payment(Month): {{(oldPayment / monthPrPayment) | number:2}}
+    </div>
+    <div class="col-md-1">
+      Payment(Forever): {{(oldPayment * (paymentPrYear * oldYears) ) | number:2}}
+    </div>
+
+  </div>
+  <div class="row">
+    <button data-ng-click="calculate()" class="btn btn-primary">Calculate</button>
+  </div>
+  <hr />
+  Betalinger:
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Term</th>
+        <th>Value</th>
+               <th>Interest</th>
+
+        <th>Payment</th>
+        <th>Pay(month)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-repeat="payment in payments">
+        <td>{{payment.term}}</td>
+        <td>{{payment.preValue | number:2}}</td>
+                <td>{{payment.interest | number:2}}</td>
+
+        <td>{{payment.payment | number:2}}</td>
+               <td>{{(payment.payment / 12 * paymentPrYear) | number:2}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+@section scripts
+{
+  <script>
+    var loanCtrl = function ($scope) {
+      $scope.oldLoan = 2391000;
+      $scope.oldYears = 30;
+      $scope.oldInterest = 2.5;
+      $scope.payments = [];
+      $scope.oldPayment;
+      $scope.paymentPrYear = 4;
+      $scope.monthPrPayment = (12 / $scope.paymentPrYear);
+
+
+      calculateAnno = function (G, r, n) {
+        console.log("G = " + G + " r = " + r + " n = " + n);
+        var x = Math.pow((1 + r), (-n));
+        console.log("x = " + x);
+        var y = 1 - x;
+        console.log("y = " + y);
+
+        var z = r / y;
+        console.log("z = " + z);
+
+        console.log("Y = " + (G * z));
+
+        return (G * z);
+      };
+
+      $scope.calculate = function () {
+        var numberOfPayments = $scope.oldYears * $scope.paymentPrYear;
+        var interestRealNumber = $scope.oldInterest / 100;
+        var interestprPayment = interestRealNumber / $scope.paymentPrYear;
+        var r = interestprPayment;
+        var payment = calculateAnno($scope.oldLoan, r, numberOfPayments);
+        $scope.oldPayment = payment;
+
+        var previousValue = $scope.oldLoan;
+        $scope.payments = [];
+        for (var i = 1; i <= numberOfPayments; i++) {
+          $scope.payments.push({ term: i, interest: (r*previousValue), payment: payment, preValue: previousValue });
+          previousValue = previousValue - payment + (r * previousValue);
+        };
+      };
+    };
+  </script>
+
+}

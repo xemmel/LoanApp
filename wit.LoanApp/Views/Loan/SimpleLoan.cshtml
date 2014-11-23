@@ -1,0 +1,63 @@
+﻿@{
+  ViewBag.Title = "SimpleLoan";
+}
+
+<h2>SimpleLoan</h2>
+<div data-ng-controller="SimpleLoanCtrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <label>Låne beløb:</label><input type="text" placeholder="Beløb...." data-ng-model="G" class="form-control" />
+      </div>
+      <div class="col-md-1">
+        <label>Antal år:</label><input type="text" placeholder="Lånets løbetid (år)..." data-ng-model="years" class="form-control" />
+      </div>
+      <div class="col-md-1">
+        <label>Rente(%):</label><input type="text" placeholder="Rente (%)..." data-ng-model="InterestPercent" class="form-control" />
+      </div>
+      <div class="col-md-1">
+        <label>Term/år:</label><input type="text" placeholder="Terminer/år..." data-ng-model="paymentsYear" class="form-control" />
+      </div>
+
+      <div class="col-md-1">
+        Ydelse/Term: {{y | number:2}}
+      </div>
+      <div class="col-md-1">
+        Ydelse/år: {{y * paymentsYear | number:2}}
+      </div>
+          <div class="col-md-1">
+        Ydelse/md: {{y * paymentsYear  / 12| number:2}}
+      </div>
+
+      <div class="col-md-1">
+        <button class="btn btn-primary" data-ng-click="calculate()">Calculate</button>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Term</th>
+          <th>Year</th>
+          <th>Interest ({{interestTotal | number:2}})</th>
+          <th>Payment ({{payTotal | number:2}})</th>
+          <th>Gross</th>
+          <th>Net</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="term in terms">
+          <td>{{term.Term}}</td>
+          <td>{{term.Year}}</td>
+                   <td>{{term.Interest | number:2}}</td>
+          <td>{{term.Payment | number:2}}</td>
+ 
+          <td>{{term.GrossValue | number:2}}</td>
+          <td>{{term.NetValue | number:2}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script src="~/Scripts/Pages/SimpeLoan.js"></script>
